@@ -2,26 +2,37 @@
 
 \usepackage[a4paper,top=2.75cm,bottom=4.25cm,left=2.6cm,right=2.6cm]{geometry}
 \usepackage[brazilian]{babel}
+\usepackage[backend=biber,url=true,doi=true,eprint=false,style=numeric]{biblatex}
 \usepackage{multicol}
 \usepackage{fontspec}
+\usepackage{caption}
 \usepackage{etoolbox}
 \usepackage{authblk}
 \usepackage{titlesec}
 \usepackage{tikz}
 \usepackage[all]{background}
 \usepackage{parskip}
+\usepackage{microtype}
 
 \setmainfont{Arial}
 \setlength{\columnsep}{0.8cm}
 \pagenumbering{gobble}
 
+\addbibresource{references.bib}
+
 \titleformat{\section}[block]{\fontsize{13pt}{15.6}\selectfont\bfseries\filcenter}{}{1em}{}
-\titlespacing\section{0pt}{4pt}{4pt}
+\titlespacing\section{0pt}{0cm}{0cm}
+
+\setlength{\parskip}{0.4mm}
+
+\newenvironment{Figure}
+  {\par\noindent\minipage{\linewidth}}
+  {\endminipage\par}
 
 \newcommand{\SIICUSPLogo}{%
 	\begin{tikzpicture}[remember picture,overlay]
 		\node[anchor=north west,yshift=-1.2cm,xshift=2.5cm]%
-			at (0, 0) {\includegraphics[width=1.80cm, keepaspectratio]{siicusp_logo.png}};
+			at (0, 0) {\includegraphics[width=1.80cm, keepaspectratio]{imgs/siicusp_logo.png}};
 	\end{tikzpicture}
 }
 
@@ -52,52 +63,63 @@
 
 \section*{Objetivos}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque
-sed neque sit amet facilisis. In urna lectus, sodales et porttitor sit amet,
-vehicula quis mi. Cras ex est, elementum non dui eget, congue consequat leo.
-Suspendisse lacinia vehicula tristique. Sed feugiat nunc eu ullamcorper
-aliquam. Curabitur eu convallis risus. Pellentesque aliquam purus ac sem
-egestas, eget dictum ex gravida. Maecenas sit amet urna tellus. Suspendisse
-auctor erat non mi porttitor euismod.
+Redes soma-produto (SPN, de \textit{Sum-Product Networks}) são modelos probabilísticos que podem
+representar distribuições de probabilidade com um grande número de variáveis.  Recentemente SPNs
+tiveram resultados impressionantes em diversas aplicações.  Apesar disso, atualmente existem poucas
+bibliotecas para inferência e aprendizado de SPNs, além de não existir nenhum estudo comparativo
+entre os diferentes métodos de aprendizado.  Este projeto busca criar uma biblioteca livre, aberta
+e gratuita para inferência e aprendizado de SPNs, além de comparar três algoritmos de aprendizado
+no domínio de classificação e compleição de imagens.
 
 \section*{Métodos e Procedimentos}
 
-Sed congue ultricies eleifend. Curabitur condimentum erat molestie turpis
-mollis, vitae cursus magna aliquam. Cras porta urna non odio faucibus, a
-sagittis ex finibus. Phasellus magna ipsum, ultrices et urna id, tempor dapibus
-purus. Vestibulum sollicitudin mi quis dictum malesuada. Nam mollis purus non
-elit viverra consequat. Ut scelerisque eleifend aliquet. Donec euismod erat ut
-est gravida pharetra. Proin non vestibulum enim, nec sagittis odio. Cras
-sagittis, libero vel consectetur tristique, sapien ante lobortis orci, vitae
-rutrum metus sapien id erat. Nunc vitae euismod elit. Donec eget metus at justo
-fringilla fermentum nec ac lectus. Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Pellentesque fringilla accumsan elit, ut sollicitudin lorem
-rhoncus eu. Maecenas accumsan, ipsum et maximus porta, quam massa aliquet odio,
-a accumsan metus quam vitae neque. Morbi vitae purus risus.
+Os algoritmos foram implementados como parte da biblioteca GoSPN\footnote{Disponível em:
+  \url{https:github.com/RenatoGeh/gospn}} escrita na linguagem Go.  Foram implementados os
+algoritmos de aprendizado de Poon-Domingos~\cite{poon-domingos}, Dennis-Ventura~\cite{clustering} e
+Gens-Domingos~\cite{gens-domingos}. Em seguida, foram feitos testes comparando a performance dos
+três métodos nos conjuntos de dados DigitsX, MNIST, Caltech-101 e Olivetti Faces.
 
 \section*{Resultados}
 
-Cras vitae felis et turpis aliquam volutpat. Donec neque risus, efficitur quis
-elit ut, maximus vehicula diam. Suspendisse mollis, diam vel laoreet dapibus,
-quam mauris lacinia leo, efficitur feugiat justo ligula sit amet nulla. Donec
-efficitur, mi ut ultricies varius, mi quam luctus ex, id ultricies tortor nulla
-id ex. Vivamus porta felis malesuada tincidunt sodales. In a eros ac ex mattis
-commodo. Vestibulum id volutpat elit.
+Os dois algoritmos que tiveram melhores desempenhos foram o de Gens-Domingos e Dennis-Ventura. O de
+Poon-Domingos ou excedeu o limite de tempo ou memória, ou teve resultados abaixo do esperado. Para
+50\% do conjunto de dados selecionado aleatoriamente como treino e o restante como teste, os dois
+melhores algoritmos tiveram as seguintes acurácias em porcentagem de acerto na tarefa de
+classificação:
+
+\begin{tabular}{l|c|c}
+  %& DigitsX & Caltech & Olivetti & MNIST\\
+  %\hline
+  %Dennis-Ventura & 99.42 & 81.38 & 89.93 & 77.85\\
+  %Gens-Domingos & 97.14 & 88.66 & 95.50 & 81.55\\
+  & Dennis-Ventura & Gens-Domingos\\
+  \hline
+  DigitsX & 99.42 & 97.14\\
+  Caltech & 81.38 & 88.66\\
+  Olivetti& 89.93 & 95.50\\
+  MNIST   & 77.85 & 81.55\\
+\end{tabular}
+
+Para a tarefa de compleição de imagem, foi dada metade da imagem como evidência para o modelo
+(visualizada na Figura 1 em escala de cinza) e gerada a outra metade (na Figura 1 em tons de
+verde) tomando as valorações mais prováveis dada evidência. A imagem da esquerda foi gerada pelo
+algoritmo de Gens-Domingos, e o da direita pelo de Dennis-Ventura.
+\begin{Figure}
+  \centering\includegraphics[scale=8.0]{imgs/gens_cmpl.png}
+  \includegraphics[scale=1.925]{imgs/dennis_cmpl.png}\\
+  \captionof*{figure}{\fontsize{9pt}{10.8}\selectfont Figura 1. Compleição de imagem.}
+\end{Figure}
 
 \section*{Conclusões}
 
-Aenean pretium est eu dui dictum, quis aliquam nibh tincidunt. Fusce elementum
-lacus et nulla egestas, eu accumsan arcu aliquam. Donec ut pretium sapien.
-Maecenas eu ante varius, facilisis elit ac, malesuada lectus. Mauris risus
-turpis, convallis at pharetra non, suscipit ac ex. Nam sit amet felis eu eros
-gravida luctus.
+Obteve-se bons resultados em classificação em diferentes domínios, como classificação de dígitos,
+identificação de objetos e reconhecimento de face. Em compleição, os algoritmos parecem identificar
+de forma razoável características fortes, como nariz, olhos e boca no conjunto Olivetti. Além
+disso, todo código foi disponibilizado e documentado de forma livre e gratuita.
 
 \section*{Referências Bibliográficas}
 
-Fusce sit amet bibendum est, sed aliquam mauris. Ut metus urna,
-pellentesque eu ornare sed, tristique quis sem. Praesent facilisis augue
-commodo, rutrum enim sed, mattis arcu. Fusce euismod accumsan turpis, posuere
-convallis nibh tempus vitae.
+\printbibliography[heading=none]
 
 \end{multicols*}
 
