@@ -1,0 +1,104 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,top=2.75cm,bottom=4.25cm,left=2.6cm,right=2.6cm]{geometry}
+\usepackage[brazilian]{babel}
+\usepackage{multicol}
+\usepackage{fontspec}
+\usepackage{etoolbox}
+\usepackage{authblk}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage[all]{background}
+\usepackage{parskip}
+
+\setmainfont{Arial}
+\setlength{\columnsep}{0.8cm}
+\pagenumbering{gobble}
+
+\titleformat{\section}[block]{\fontsize{13pt}{15.6}\selectfont\bfseries\filcenter}{}{1em}{}
+\titlespacing\section{0pt}{4pt}{4pt}
+
+\newcommand{\SIICUSPLogo}{%
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[anchor=north west,yshift=-1.2cm,xshift=2.5cm]%
+			at (0, 0) {\includegraphics[width=1.80cm, keepaspectratio]{siicusp_logo.png}};
+	\end{tikzpicture}
+}
+
+\SetBgContents{\SIICUSPLogo}
+\SetBgPosition{current page.north west}
+\SetBgOpacity{1.0}
+\SetBgScale{1.0}
+\SetBgAngle{0.0}
+
+\makeatletter
+\patchcmd{\@maketitle}{\LARGE}{\fontsize{13pt}{15.6}\selectfont\bfseries}{}{}
+\makeatother
+
+\renewcommand\Authfont{\fontsize{13pt}{15.6}}
+\renewcommand\Affilfont{\fontsize{13pt}{15.6}}
+
+\title{APRENDIZADO AUTOMÁTICO DE REDES SOMA-PRODUTO}
+\author{\textbf{Renato Lui Geh (autor) e Denis Deratani Mauá (orientador)}}
+\affil{Instituto de Matemática e Estatística, Universidade de São Paulo}
+\affil{\fontsize{10pt}{12}\selectfont\{renatolg,ddm\}@ime.usp.br}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{multicols*}{2}
+
+\section*{Objetivos}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque
+sed neque sit amet facilisis. In urna lectus, sodales et porttitor sit amet,
+vehicula quis mi. Cras ex est, elementum non dui eget, congue consequat leo.
+Suspendisse lacinia vehicula tristique. Sed feugiat nunc eu ullamcorper
+aliquam. Curabitur eu convallis risus. Pellentesque aliquam purus ac sem
+egestas, eget dictum ex gravida. Maecenas sit amet urna tellus. Suspendisse
+auctor erat non mi porttitor euismod.
+
+\section*{Métodos e Procedimentos}
+
+Sed congue ultricies eleifend. Curabitur condimentum erat molestie turpis
+mollis, vitae cursus magna aliquam. Cras porta urna non odio faucibus, a
+sagittis ex finibus. Phasellus magna ipsum, ultrices et urna id, tempor dapibus
+purus. Vestibulum sollicitudin mi quis dictum malesuada. Nam mollis purus non
+elit viverra consequat. Ut scelerisque eleifend aliquet. Donec euismod erat ut
+est gravida pharetra. Proin non vestibulum enim, nec sagittis odio. Cras
+sagittis, libero vel consectetur tristique, sapien ante lobortis orci, vitae
+rutrum metus sapien id erat. Nunc vitae euismod elit. Donec eget metus at justo
+fringilla fermentum nec ac lectus. Lorem ipsum dolor sit amet, consectetur
+adipiscing elit. Pellentesque fringilla accumsan elit, ut sollicitudin lorem
+rhoncus eu. Maecenas accumsan, ipsum et maximus porta, quam massa aliquet odio,
+a accumsan metus quam vitae neque. Morbi vitae purus risus.
+
+\section*{Resultados}
+
+Cras vitae felis et turpis aliquam volutpat. Donec neque risus, efficitur quis
+elit ut, maximus vehicula diam. Suspendisse mollis, diam vel laoreet dapibus,
+quam mauris lacinia leo, efficitur feugiat justo ligula sit amet nulla. Donec
+efficitur, mi ut ultricies varius, mi quam luctus ex, id ultricies tortor nulla
+id ex. Vivamus porta felis malesuada tincidunt sodales. In a eros ac ex mattis
+commodo. Vestibulum id volutpat elit.
+
+\section*{Conclusões}
+
+Aenean pretium est eu dui dictum, quis aliquam nibh tincidunt. Fusce elementum
+lacus et nulla egestas, eu accumsan arcu aliquam. Donec ut pretium sapien.
+Maecenas eu ante varius, facilisis elit ac, malesuada lectus. Mauris risus
+turpis, convallis at pharetra non, suscipit ac ex. Nam sit amet felis eu eros
+gravida luctus.
+
+\section*{Referências Bibliográficas}
+
+Fusce sit amet bibendum est, sed aliquam mauris. Ut metus urna,
+pellentesque eu ornare sed, tristique quis sem. Praesent facilisis augue
+commodo, rutrum enim sed, mattis arcu. Fusce euismod accumsan turpis, posuere
+convallis nibh tempus vitae.
+
+\end{multicols*}
+
+\end{document}
