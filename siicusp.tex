@@ -23,7 +23,7 @@
 \titleformat{\section}[block]{\fontsize{13pt}{15.6}\selectfont\bfseries\filcenter}{}{1em}{}
 \titlespacing\section{0pt}{0cm}{0cm}
 
-\setlength{\parskip}{0.4mm}
+\setlength{\parskip}{0.525mm}
 
 \newenvironment{Figure}
   {\par\noindent\minipage{\linewidth}}
@@ -64,7 +64,7 @@
 \section*{Objetivos}
 
 Redes soma-produto (SPN, de \textit{Sum-Product Networks}) são modelos probabilísticos que podem
-representar distribuições de probabilidade com um grande número de variáveis.  Recentemente SPNs
+representar distribuições de probabilidade com um grande número de variáveis.  Recentemente, SPNs
 tiveram resultados impressionantes em diversas aplicações.  Apesar disso, atualmente existem poucas
 bibliotecas para inferência e aprendizado de SPNs, além de não existir nenhum estudo comparativo
 entre os diferentes métodos de aprendizado.  Este projeto busca criar uma biblioteca livre, aberta
@@ -82,16 +82,12 @@ três métodos nos conjuntos de dados DigitsX, MNIST, Caltech-101 e Olivetti Fac
 \section*{Resultados}
 
 Os dois algoritmos que tiveram melhores desempenhos foram o de Gens-Domingos e Dennis-Ventura. O de
-Poon-Domingos ou excedeu o limite de tempo ou memória, ou teve resultados abaixo do esperado. Para
-50\% do conjunto de dados selecionado aleatoriamente como treino e o restante como teste, os dois
-melhores algoritmos tiveram as seguintes acurácias em porcentagem de acerto na tarefa de
-classificação:
-
+Poon-Domingos ou excedeu o limite de tempo ou memória, ou teve resultados abaixo do esperado. A
+Tabela 1 mostra a porcentagem de acerto em classificação dos dois melhores algoritmos usando 50\%
+do conjunto de dados como treino e o restante como teste.
+\vspace{-0.2cm}
+\captionof*{table}{\fontsize{9pt}{10.8}\selectfont Tabela 1. Acurácia em classificação (em \%).}
 \begin{tabular}{l|c|c}
-  %& DigitsX & Caltech & Olivetti & MNIST\\
-  %\hline
-  %Dennis-Ventura & 99.42 & 81.38 & 89.93 & 77.85\\
-  %Gens-Domingos & 97.14 & 88.66 & 95.50 & 81.55\\
   & Dennis-Ventura & Gens-Domingos\\
   \hline
   DigitsX & 99.42 & 97.14\\
@@ -107,18 +103,20 @@ algoritmo de Gens-Domingos, e o da direita pelo de Dennis-Ventura.
 \begin{Figure}
   \centering\includegraphics[scale=8.0]{imgs/gens_cmpl.png}
   \includegraphics[scale=1.925]{imgs/dennis_cmpl.png}\\
+  \vspace{-0.2cm}
   \captionof*{figure}{\fontsize{9pt}{10.8}\selectfont Figura 1. Compleição de imagem.}
 \end{Figure}
 
 \section*{Conclusões}
 
 Obteve-se bons resultados em classificação em diferentes domínios, como classificação de dígitos,
-identificação de objetos e reconhecimento de face. Em compleição, os algoritmos parecem identificar
-de forma razoável características fortes, como nariz, olhos e boca no conjunto Olivetti. Além
-disso, todo código foi disponibilizado e documentado de forma livre e gratuita.
+identificação de objetos e reconhecimento de face. Em compleição, os algoritmos identificaram
+de forma razoável características como nariz, olhos e boca no conjunto Olivetti. Todo código foi
+documentado e disponibilizado de forma livre e gratuita como parte da biblioteca GoSPN\@.
 
 \section*{Referências Bibliográficas}
 
+\AtNextBibliography{\fontsize{10pt}{12.0}\selectfont}
 \printbibliography[heading=none]
 
 \end{multicols*}
