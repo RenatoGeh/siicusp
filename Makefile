@@ -1,5 +1,8 @@
+engine = xelatex
 file = siicusp
-compile = xelatex $(file).tex
+file_en = $(file)_en
+compile = $(engine) $(file).tex
+compile_en = $(engine) $(file_en).tex
 
 all:
 	make clean; \
@@ -7,6 +10,13 @@ all:
  	biber $(file); \
  	$(compile); $(compile) && \
  	zathura $(file).pdf
+
+en:
+	make clean; \
+	$(compile_en); $(compile_en); \
+ 	biber $(file_en); \
+ 	$(compile_en); $(compile_en) && \
+ 	zathura $(file_en).pdf
 
 .PHONY: clean
 clean:

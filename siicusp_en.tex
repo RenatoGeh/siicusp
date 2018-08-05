@@ -1,7 +1,7 @@
 \documentclass[10pt,a4paper]{article}
 
 \usepackage[a4paper,top=2.75cm,bottom=4.25cm,left=2.6cm,right=2.6cm]{geometry}
-\usepackage[brazilian]{babel}
+\usepackage[english]{babel}
 \usepackage[backend=biber,url=true,doi=true,eprint=false,style=numeric]{biblatex}
 \usepackage{multicol}
 \usepackage{fontspec}
@@ -49,9 +49,9 @@
 \renewcommand\Authfont{\fontsize{13pt}{15.6}}
 \renewcommand\Affilfont{\fontsize{13pt}{15.6}}
 
-\title{APRENDIZADO AUTOMÁTICO DE REDES SOMA-PRODUTO}
-\author{\textbf{Renato Lui Geh (autor), Denis Deratani Mauá (orientador)}}
-\affil{Instituto de Matemática e Estatística, Universidade de São Paulo}
+\title{AUTOMATIC LEARNING OF SUM-PRODUCT NETWORKS}
+\author{\textbf{Renato Lui Geh (author), Denis Deratani Mauá (advisor)}}
+\affil{Institute of Mathematics and Statistics, University of São Paulo}
 \affil{\fontsize{10pt}{12}\selectfont\{renatolg,ddm\}@ime.usp.br}
 \date{}
 
@@ -61,7 +61,7 @@
 
 \begin{multicols*}{2}
 
-\section*{Objetivos}
+\section*{Objective}
 
 Redes soma-produto (SPN, de \textit{Sum-Product Networks}) são modelos probabilísticos que podem
 representar distribuições de probabilidade com um grande número de variáveis.  Recentemente, SPNs
@@ -71,7 +71,7 @@ entre os diferentes métodos de aprendizado.  Este projeto busca criar uma bibli
 e gratuita para inferência e aprendizado de SPNs, além de comparar três algoritmos de aprendizado
 no domínio de classificação e compleição de imagens.
 
-\section*{Métodos e Procedimentos}
+\section*{Materials and Methods}
 
 Os algoritmos foram implementados como parte da biblioteca GoSPN\footnote{Disponível em:
   \url{https:github.com/RenatoGeh/gospn}} escrita na linguagem Go.  Foram implementados os
@@ -79,7 +79,7 @@ algoritmos de aprendizado de Poon-Domingos~\cite{poon-domingos}, Dennis-Ventura~
 Gens-Domingos~\cite{gens-domingos}. Em seguida, foram feitos testes comparando a performance dos
 três métodos nos conjuntos de dados DigitsX, MNIST, Caltech-101 e Olivetti Faces.
 
-\section*{Resultados}
+\section*{Results}
 
 Os dois algoritmos que tiveram melhores desempenhos foram o de Gens-Domingos e Dennis-Ventura. O de
 Poon-Domingos ou excedeu o limite de tempo ou memória, ou teve resultados abaixo do esperado. A
@@ -107,7 +107,7 @@ algoritmo de Gens-Domingos, e o da direita pelo de Dennis-Ventura.
   \captionof*{figure}{\fontsize{9pt}{10.8}\selectfont Figura 1. Compleição de imagem.}
 \end{Figure}
 
-\section*{Conclusões}
+\section*{Conclusions}
 
 Obteve-se bons resultados em classificação em diferentes domínios, como classificação de dígitos,
 identificação de objetos e reconhecimento de face. Em compleição, os algoritmos identificaram
@@ -115,7 +115,7 @@ de forma razoável características como nariz, olhos e boca no conjunto Olivett
 documentado e disponibilizado de forma livre e gratuita como parte da biblioteca GoSPN\@.
 
 \smallskip
-\section*{Referências Bibliográficas}
+\section*{References}
 \vspace{0.1cm}
 
 \AtNextBibliography{\fontsize{10pt}{12.0}\selectfont}
