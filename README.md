@@ -6,5 +6,6 @@ SIICUSP Homepage: \[[en](http://siicusp.prp.usp.br/en/home-us/) | [pt](http://si
 
 <hr>
 
-My entry: \[[en](https://github.com/RenatoGeh/siicusp/blob/master/siicusp_en.pdf) | [pt](https://github.com/RenatoGeh/siicusp/blob/master/siicusp.pdf)\]
+Abstract: \[[en](https://github.com/RenatoGeh/siicusp/blob/master/abstract/siicusp_en.pdf) | [pt](https://github.com/RenatoGeh/siicusp/blob/master/abstract/siicusp.pdf)\]
+Poster: \[[en](https://github.com/RenatoGeh/siicusp/blob/master/poster/poster.pdf)\]
 
