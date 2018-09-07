@@ -26,8 +26,8 @@
 \usepackage{booktabs}
 \usepackage[backend=biber,url=true,doi=true,eprint=false,style=numeric]{biblatex}
 
-\setlength{\paperwidth}{88cm}
-\setlength{\paperheight}{100cm}
+\setlength{\paperwidth}{90cm}
+\setlength{\paperheight}{120cm}
 
 \usecaptiontemplate{\small\structure{\insertcaptionname~\insertcaptionnumber: }\insertcaption}
 
@@ -103,53 +103,43 @@
 \begin{frame}[t]
 
 \begin{columns}[t]
-  \begin{column}{.02\textwidth}\end{column} % Empty spacer column
+  \begin{column}{.015\textwidth}\end{column} % Empty spacer column
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Column 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \begin{column}{.505\textwidth}
+  \begin{column}{.5225\textwidth}
 
     \vspace{\shrink}
-    \begin{block}{Introduction}
-      Sum-product networks (SPNs) are probabilistic graphical models capable of representing
+    \begin{block}{Introduction and Methods}
+      Sum-product networks (SPNs) are deep probabilistic graphical models capable of representing
       tractable probability distributions with a great number of variables. In the last decade,
       SPNs have achieved impressive results in various fields, such as protein folding, signal
-      modelling, image classification and completion, activity recognition and natural
-      language.\pskip
-
+      modelling, image classification and completion, activity recognition and natural language.
       Graphically, SPNs can be seen as DAGs whose leaves are tractable univariate probability
-      distributions and internal nodes are either weighted sums or products. Its great
-      representational power is given by its deep architecture, allowing for deep compact networks
-      to represent the same family of functions as an exponential shallow
-      one~\cite{shallow-vs-deep}. Moreover, computing exact inference in SPNs and extracting the
-      approximate MAP states of the network is done in linear time to the number of the graph's
-      edges, meaning that parameter learning is also tractable.\pskip
+      distributions and internal nodes are either weighted sums or products. Computing exact
+      inference in SPNs is done in linear time to the number of the graph's edges.
+
+      \begin{figure}[h]
+        \centering\includegraphics[height=21cm]{graphs/sample_spn.png}
+        \caption{An SPN over variables $X_1$ and $X_2$.}
+      \end{figure}
 
       Despite these promising results, at present there are very few SPN inference and learning
       codebases publicly available, and no well maintained, documented and updated SPN library. In
       addition, there has been no comparative study on different SPN learning methods yet. This
       project sought to develop a free, open-source inference and learning SPN library, and to
       compare three different state-of-the-art SPN learning algorithms in the domain of image
-      classification and completion.
-    \end{block}
+      classification and completion.\pskip
 
-    \begin{block}{Materials and Methods}
-      The Poon-Domingos architecture~\cite{poon-domingos}, Dennis-Ventura structure
-      algorithm~\cite{clustering} and Gens-Domingos schema~\cite{gens-domingos} were implemented
-      as part of the GoSPN library (available at \url{https://github.com/RenatoGeh/gospn/}).  The
-      library, written in Go, also contains functions for finding the exact probability of evidence
-      of some valuation, computing an approximation of the MAP probability and states, and
-      extracting useful structural properties of a network, such as completeness, decomposability
-      and scope.\pskip
-
-      We used four datasets for image classification and completion. Two datasets, DigitsX and
-      MNIST, are handwritten digits dataset, with the former containing only one handwriting,
-      and the latter 500. The Caltech-101 dataset contains images of 101 different object
-      categories. We took only three categories (bike, cars and faces) due to memory and time
-      constraints. The last dataset, Olivetti, contains 400 face images of 40 different people,
-      with 10 images each.
+      We implemented three learning algorithms: the \textbf{Poon-Domingos}
+      architecture~\cite{poon-domingos}, \textbf{Dennis-Ventura} structure algorithm~\cite{clustering} and
+      \textbf{Gens-Domingos} schema~\cite{gens-domingos} as part of the GoSPN library (available at
+      \url{https://github.com/RenatoGeh/gospn/}). We used four datasets for image classification
+      and completion. DigitsX and MNIST are handwritten digits datasets, Caltech-101 is a
+      categorical object dataset and Olivetti is a faces recognition dataset. For Caltech-101 we
+      used only three categories (bikes, cars and faces) due to memory and time constraints.
     \end{block}
 
     \begin{block}{Development}
@@ -172,24 +162,13 @@
       instances each. Predicting labels was done by finding the MPE of the classification variable
       through approximate MAP state extraction. We speculate that better results could be achieved
       by computing the exact probability of evidence of each possible valuation instead of the MAP
-      way, albeit with longer inference time.\pskip
+      way, albeit with longer inference times.\pskip
 
       For image completion, half of the image was given as evidence to the model. The other half
       was then generated by the SPN by querying for the most probable variable valuations given the
       evidence.
     \end{block}
 
-  \end{column}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Column 2
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  \begin{column}{.02\textwidth}\end{column} % Empty spacer column
-
-  \begin{column}{.505\textwidth}
-
-    \vspace{\shrink}
     \begin{block}{Results}
       Due to the issues mentioned earlier, the Poon-Domingos model either did not complete training
       or had unsatisfactory results. In this poster, we show only results achieved by the
@@ -202,6 +181,7 @@
           DigitsX & 92.85 & 91.27\\
           Caltech & 78.58 & 77.40\\
           Olivetti& 83.78 & 2.50\\
+          MNIST   & 77.85 & 81.55\\
         \end{tabular}\hspace{2.5cm}
         \begin{tabular}{l|c|c}
           $p=0.2$ & DV & GD\\
@@ -209,6 +189,7 @@
           DigitsX & 98.57 & 96.78\\
           Caltech & 78.49 & 85.00\\
           Olivetti& 74.88 & 2.50\\
+          MNIST   & 77.85 & 81.55\\
         \end{tabular}\hspace{2.5cm}
         \begin{tabular}{l|c|c}
           $p=0.3$ & DV & GD\\
@@ -216,13 +197,32 @@
           DigitsX & 99.18 & 96.93\\
           Caltech & 79.88 & 80.28\\
           Olivetti& 89.93 & 84.28\\
-        \end{tabular}\hspace{2.5cm}
+          MNIST   & 77.85 & 81.55\\
+        \end{tabular}
+      \end{table}
+    \end{block}
+
+  \end{column}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Column 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \begin{column}{.02\textwidth}\end{column} % Empty spacer column
+
+  \begin{column}{.5225\textwidth}
+
+    \vspace{\shrink}
+    \setbeamertemplate{block begin}[notitle]
+    \begin{block}{}
+      \begin{table}[h]
         \begin{tabular}{l|c|c}
           $p=0.4$ & DV & GD\\
           \hline
           DigitsX & 98.81 & 98.09\\
           Caltech & 79.88 & 86.11\\
           Olivetti& 89.93 & 91.25\\
+          MNIST   & 77.85 & 81.55\\
         \end{tabular}\hspace{2.5cm}
         \begin{tabular}{l|c|c}
           $p=0.5$ & DV & GD\\
@@ -238,6 +238,7 @@
           DigitsX & 99.28 & 97.85\\
           Caltech & 81.35 & 90.00\\
           Olivetti& 97.50 & 98.75\\
+          MNIST   & 77.85 & 81.55\\
         \end{tabular}
         \begin{tabular}{l|c|c}
           $p=0.7$ & DV & GD\\
@@ -245,6 +246,7 @@
           DigitsX & 98.57 & 97.61\\
           Caltech & 75.45 & 92.22\\
           Olivetti& 92.89 & 81.93\\
+          MNIST   & 77.85 & 81.55\\
         \end{tabular}\hspace{2.5cm}
         \begin{tabular}{l|c|c}
           $p=0.8$ & DV & GD\\
@@ -252,6 +254,7 @@
           DigitsX & 93.33 & 92.66\\
           Caltech & 74.78 & 90.00\\
           Olivetti& 50.00 & 81.59\\
+          MNIST   & 77.85 & 81.55\\
         \end{tabular}\hspace{2.5cm}
         \begin{tabular}{l|c|c}
           $p=0.9$ & DV & GD\\
@@ -259,9 +262,14 @@
           DigitsX & 88.75 & 86.25\\
           Caltech & 75.75 & 84.84\\
           Olivetti& 60.93 & 100.0\\
+          MNIST   & 77.85 & 81.55\\
         \end{tabular}
         \caption{Classification accuracy (in \%).}
-      \end{table}\pskip
+      \end{table}
+
+      For small $p$ values, the Dennis-Ventura algorithm gave the best results. It also got better
+      scores when the classification variable had many categories. Nonetheless, the Gens-Domingos
+      algorithm still yielded better results overall.\pskip
 
       Image completion was done on the Olivetti dataset. The gray half of the image was given as
       evidence, and the other half in green is the completion generated by the model. The
@@ -269,11 +277,23 @@
       on the right was generated by a Dennis-Ventura trained SPN.\pskip
 
       \begin{figure}[h]
-        \centering\includegraphics[height=20cm]{imgs/gens_cmpl.png}
-        \includegraphics[height=20cm]{imgs/dennis_cmpl.png}
+        \centering\includegraphics[height=12cm]{imgs/gens_cmpl.png}
+        \includegraphics[height=12cm]{imgs/dennis_cmpl.png}
         \caption{Image completion on the Olivetti dataset.}
       \end{figure}
+
+      Though completion yielded empirically good results in most cases, there were instances where
+      the models had trouble completing key features, such as eyes, nose and mouth, when these were
+      partially or completely occluded. Experiments showed that the SPNs trained proved capable of
+      completing the face's shape and hair, but sometimes had trouble with finer details, such as
+      glasses or facial hair.\pskip
+
+      \begin{figure}[h]
+        \centering\includegraphics[width=40cm]{imgs/notfine.png}
+        \caption{Absence or deformation of key features caused by completion.}
+      \end{figure}
     \end{block}
+    \setbeamertemplate{block begin}[default]
 
     \begin{block}{Conclusions}
       We achieved good classification results without any feature extraction on different
@@ -281,6 +301,12 @@
       recognition. On the completion task, the algorithms were able to identify key features, such
       as nose, eyes and mouth on the Olivetti dataset. Both learning and inference code were
       documented and made available as part of the free open-source GoSPN library.
+    \end{block}
+
+    \begin{block}{Acknowledgements}
+      We would like to thank Diarmaid Conaty and Cassio P. de Campos, both from Queen's University
+      Belfast, for contributing with bug fixes, suggestions and code implementation for the GoSPN
+      library. This project received financial support from CNPq grant PIBIC 800585/2016--0.
     \end{block}
 
     \begin{block}{References}
@@ -292,7 +318,7 @@
 
   \end{column}
 
-  \begin{column}{.02\textwidth}\end{column} % Empty spacer column
+  \begin{column}{.015\textwidth}\end{column} % Empty spacer column
 
 \end{columns} % End of all the columns in the poster
 

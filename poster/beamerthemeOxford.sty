@@ -14,6 +14,7 @@
 \definecolor{oxfordblue}{RGB}{0,33,71} % Pantone 282, Hex #002147, RGB 0 33 71, CMYK 100 80 0 60
 \definecolor{oxfordlightblue}{RGB}{0,82,163}
 \definecolor{darkgreen}{rgb}{0,.4,0}
+\definecolor{darkgrey}{RGB}{36,36,36}
 
 \setbeamercolor{headline}{fg=oxfordblue,bg=oxfordblue}
 \setbeamercolor{footline}{fg=oxfordblue,bg=white}
@@ -31,7 +32,7 @@
 \setbeamercolor*{block body}{bg=lightgrey,fg=oxfordblue}
 \setbeamercolor*{block title}{fg=white,bg=oxfordblue}
 \setbeamerfont{block title}{size=\large,series=\bfseries}
-\setbeamercolor{upper separation line head}{fg=oxfordblue}
+\setbeamercolor{upper separation line head}{fg=white, bg=oxfordblue}
 
 \setbeamercolor*{example body}{fg=lightgrey,bg=oxfordblue}
 \setbeamercolor*{example text}{fg=lightgrey,bg=oxfordblue}
@@ -59,6 +60,28 @@
 \setbeamertemplate{theorem end}{
   \vskip 1cm
 }
+
+\defbeamertemplate{block begin}{notitle} {
+  \vskip.5ex
+  \usebeamerfont{block body}
+  \begin{beamercolorbox}[leftskip=10pt,colsep*=.75ex,sep=0.5ex,vmode]{block body}
+    \justifying
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}
+  }
+  \setbeamertemplate{block end}{
+  \end{beamercolorbox}
+}
+
+%\newenvironment<>{headlessblock}[1][]{
+  %\begin{actionenv}#2%
+    %\def\insertblocktitle{}%
+    %\par%
+    %\mode<presentation>{%
+      %\setbeamercolor{block body}{fg=oxfordblue,bg=lightgrey}
+    %}%
+    %\usebeamertemplate{block begin}}
+    %{\par\usebeamertemplate{block end}\end{actionenv}
+%}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,12 +120,17 @@
         \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}
         \vspace{0pt}
       \end{column}
-      \begin{column}{.226\paperwidth}
+      \begin{column}{.3\paperwidth}
         \vskip11ex
         \vspace{-30pt}
         \begin{center}
-         \hfill
-          \includegraphics[height=9cm]{imgs/ime_logo.png}
+          {
+            \setlength{\fboxrule}{5pt}\fcolorbox{black}{white}{
+            \includegraphics[height=9cm]{imgs/ime_logo.png}
+            \includegraphics[height=9cm]{imgs/logo_usp.jpeg}
+            \includegraphics[height=9cm]{imgs/siicusp_logo.png}
+          }
+          }
         \end{center}
         \vskip2ex
       \end{column}
@@ -137,7 +165,6 @@
   \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
     \rule{0pt}{3pt}
   \end{beamercolorbox}
-
   \leavevmode%
 %  \begin{beamercolorbox}[ht=2ex,leftskip=1em,rightskip=1em]{author in head/foot}%
 %    \texttt{\leftfoot}
